@@ -1,11 +1,18 @@
 import axios from 'axios';
 
 import { apiEndpoint } from '../lib/constants';
+import { Page } from '../components';
 
 const House = ({ house }) => {
   if (!house) return null;
 
-  return <div>{house.name}</div>;
+  return (
+    <Page>
+      <h1>{house.name}</h1>
+      <h3>{house.region}</h3>
+      <h3>{house.coatOfArms}</h3>
+    </Page>
+  );
 };
 
 House.getInitialProps = async ctx => {

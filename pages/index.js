@@ -1,26 +1,30 @@
 import axios from 'axios';
 import Link from 'next/link';
+import styled from 'styled-components';
 
 import { apiEndpoint } from '../lib/constants';
+import { Grid, Page, GridItem } from '../components';
 
 const Index = ({ houses }) => {
   if (!houses) return null;
 
   return (
-    <ul>
-      {houses.map(house => {
-        // For whatever reason the api does not return ids so we must get it from the url
-        const id = house.url.split('/').pop();
+    <Page>
+      <Grid>
+        {houses.map(house => {
+          // For whatever reason the api does not return ids so we must get it from the url
+          const id = house.url.split('/').pop();
 
-        return (
-          <li key={id}>
-            <Link href={`/house?id=${id}`}>
-              <span>{house.name}</span>
+          return (
+            <Link key={id} href={`/house?id=${id}`}>
+              <GridItem>
+                <h2>{house.name}</h2>
+              </GridItem>
             </Link>
-          </li>
-        );
-      })}
-    </ul>
+          );
+        })}
+      </Grid>
+    </Page>
   );
 };
 
