@@ -1,7 +1,9 @@
 import App, { Container } from 'next/app';
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
+
 import { theme } from '../lib/theme';
+import GlobalStyles from '../lib/global.css';
 
 export default class IceAndFireApp extends App {
   static async getInitialProps({ Component, ctx }) {
@@ -20,7 +22,10 @@ export default class IceAndFireApp extends App {
     return (
       <Container>
         <ThemeProvider theme={theme}>
-          <Component {...pageProps} />
+          <>
+            <GlobalStyles />
+            <Component {...pageProps} />
+          </>
         </ThemeProvider>
       </Container>
     );
